@@ -16,6 +16,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+// Global Declarations 
+void partitionHelp1 (int end,int pos, int *arr) ;
+void partitionHelp2(int pos , int *arr) ;
 
 
 /*
@@ -33,21 +36,43 @@
 
 void partitionAll(int value)
 {
+  int *arr = malloc(sizeof(int)*value) ;
   printf("partitionAll %d\n", value);
-  
+  partitionHelp1(value, 0, arr);
+ 
 }
 
-
-/*
- * =================================================================
- * This function helps to  prints all partitions of a positive integer value
- *
- */
-
-int partitionHelp (int value)
+void partitionHelp1(int end, int pos, int *arr)
 {
-  return 0 ;
+  int val ;
+  if(end == 0)
+    {
+      partitionHelp2(pos, arr);
+      return ;
+    }
+
+  for(val = 1 ; val <= end ; val ++)
+    {
+      arr[pos] = val ;
+      partitionHelp1(end - val , pos + 1 , arr);
+    }
 }
+
+
+void partitionHelp2(int pos , int *arr)
+{
+  int i ;
+  printf("=");
+  for(i = 0 ; i < pos - 1 ; i++)
+    {
+      printf("%d + ",arr[i]);
+    }
+  printf("%d\n",arr[pos - 1]);
+}
+
+
+
+
 
 
 /*
