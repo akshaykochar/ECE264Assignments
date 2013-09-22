@@ -23,8 +23,8 @@ void partitionIncreasingHelp1(int end, int pos,int *arr);
 void partitionDecreasingHelp1(int end, int pos, int *arr) ;
 void partitionOddHelp1(int end, int pos, int *arr);
 void partitionEvenHelp1(int end, int pos, int *arr) ;
-
-
+void partitionOddAndEvenHelp1(int end, int pos, int *arr,int flag);
+void partitionPrimeHelp1(int end, int pos, int *arr) ;
 
 
 /*
@@ -289,7 +289,34 @@ void partitionOddAndEven(int value)
 {
   printf("partitionOddAndEven %d\n", value);
   
+  int *arr = malloc(sizeof(int)*value) ;
+  partitionOddAndEvenHelp1(value, 0, arr,0);  
 }
+
+void partitionOddAndEvenHelp1(int end, int pos, int *arr,int flag)
+{
+  int val ;
+  if(end == 0)
+    {
+      partitionHelp2(pos, arr);
+      return ;
+    }
+  for(val = 1 ; val <= end ; val ++)
+    {
+      arr[pos] = val ;
+       if(flag == 0 && val%2 == 1)
+        {
+	  partitionOddAndEvenHelp1(end - val , pos + 1 , arr,1) ;
+	}
+      else if(flag == 1 && val%2 == 0)
+        {
+	  partitionOddAndEvenHelp1(end - val , pos + 1 , arr,0) ;
+	}
+    }
+}
+
+
+
 
 /*
  * =================================================================
@@ -313,4 +340,39 @@ void partitionPrime(int value)
 {
   printf("partitionPrime %d\n", value);
 
+  int *arr = malloc(sizeof(int)*value) ;
+  partitionPrimeHelp1(value, 0, arr);  
 }
+
+void partitionPrimeHelp1(int end, int pos, int *arr)
+{
+  int val ;
+  int flag = 1 ;
+  int i ;
+  if(end == 0)
+    {
+      partitionHelp2(pos, arr);
+      return ;
+    }
+  for(val = 1 ; val <= end ; val ++)
+    {
+      arr[pos] = val ;
+      for (i = 2 ; i < val ; i ++)
+	{
+	  if(val % i == 0 && val != 1)
+	    { 
+	      flag = 0 ;
+	    }
+	}
+      if(val == 1)
+	{
+	  flag = 0 ;
+	}
+      if(flag == 1 )
+        {
+	  partitionPrimeHelp1(end - val , pos + 1 , arr) ;
+	}
+      flag = 1 ;
+    }
+}
+
