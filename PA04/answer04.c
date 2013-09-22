@@ -20,6 +20,11 @@
 void partitionHelp1 (int end,int pos, int *arr) ;
 void partitionHelp2(int pos , int *arr) ;
 void partitionIncreasingHelp1(int end, int pos,int *arr);
+void partitionDecreasingHelp1(int end, int pos, int *arr) ;
+void partitionOddHelp1(int end, int pos, int *arr);
+void partitionEvenHelp1(int end, int pos, int *arr) ;
+
+
 
 
 /*
@@ -145,10 +150,31 @@ void partitionIncreasingHelp1(int end, int pos, int *arr)
 
 void partitionDecreasing(int value)
 {
+  int *arr = malloc(sizeof(int)*value) ;
   printf("partitionDecreasing %d\n", value);
-  
+  partitionDecreasingHelp1(value, 0, arr);
+ 
 
 }
+
+void partitionDecreasingHelp1(int end, int pos, int *arr)
+{
+  int val ;
+  if(end == 0)
+    {
+      partitionHelp2(pos, arr);
+      return ;
+    }
+  for(val = 1 ; val <= end ; val ++)
+    {
+      arr[pos] = val ;
+       if( arr[pos] < arr[pos-1]|| pos == 0)
+        {
+	  partitionDecreasingHelp1(end - val , pos + 1 , arr) ;
+	}
+    }
+}
+
 
 /*
  * =================================================================
@@ -171,7 +197,26 @@ void partitionDecreasing(int value)
 void partitionOdd(int value)
 {
   printf("partitionOdd %d\n", value);
-  
+  int *arr = malloc(sizeof(int)*value) ;
+  partitionOddHelp1(value, 0, arr);  
+}
+
+void partitionOddHelp1(int end, int pos, int *arr)
+{
+  int val ;
+  if(end == 0)
+    {
+      partitionHelp2(pos, arr);
+      return ;
+    }
+  for(val = 1 ; val <= end ; val ++)
+    {
+      arr[pos] = val ;
+       if(val%2 == 1)
+        {
+	  partitionOddHelp1(end - val , pos + 1 , arr) ;
+	}
+    }
 }
 
 /*
@@ -196,8 +241,30 @@ void partitionOdd(int value)
 void partitionEven(int value)
 {
   printf("partitionEven %d\n", value);
-
+  int *arr = malloc(sizeof(int)*value) ;
+  partitionEvenHelp1(value, 0, arr);  
 }
+
+void partitionEvenHelp1(int end, int pos, int *arr)
+{
+  int val ;
+  if(end == 0)
+    {
+      partitionHelp2(pos, arr);
+      return ;
+    }
+  for(val = 1 ; val <= end ; val ++)
+    {
+      arr[pos] = val ;
+       if(val%2 == 0)
+        {
+	  partitionEvenHelp1(end - val , pos + 1 , arr) ;
+	}
+    }
+}
+
+
+
 
 /*
  * =================================================================
