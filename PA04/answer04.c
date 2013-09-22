@@ -19,6 +19,7 @@
 // Global Declarations 
 void partitionHelp1 (int end,int pos, int *arr) ;
 void partitionHelp2(int pos , int *arr) ;
+void partitionIncreasingHelp1(int end, int pos,int *arr);
 
 
 /*
@@ -98,8 +99,29 @@ void partitionHelp2(int pos , int *arr)
 void partitionIncreasing(int value)
 {
   printf("partitionIncreasing %d\n", value);
-
+  int *arr = malloc(sizeof(int)*value) ;
+  partitionIncreasingHelp1(value, 0, arr);
 }
+
+
+void partitionIncreasingHelp1(int end, int pos, int *arr)
+{
+  int val ;
+  if(end == 0)
+    {
+      partitionHelp2(pos, arr);
+      return ;
+    }
+  for(val = 1 ; val <= end ; val ++)
+    {
+      arr[pos] = val ;
+      if( arr[pos] > arr[pos-1])
+	{
+	  partitionIncreasingHelp1(end - val , pos + 1 , arr) ;
+	}	
+    }
+}
+
 
 /*
  * =================================================================
