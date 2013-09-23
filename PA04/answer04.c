@@ -68,7 +68,7 @@ void partitionHelp1(int end, int pos, int *arr)
 void partitionHelp2(int pos , int *arr)
 {
   int i ;
-  printf("=");
+  printf("= ");
   for(i = 0 ; i < pos - 1 ; i++)
     {
       printf("%d + ",arr[i]);
