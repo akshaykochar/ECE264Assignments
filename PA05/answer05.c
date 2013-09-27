@@ -2,7 +2,14 @@
 #include <stdlib.h>
 #include <string.h>
 #include "pa05.h"
-#define MAXIMUM_LENGTH 80
+#define MAXIMUM_LENGTH 180
+
+
+//GLOBAL DECLARATIONS
+
+int compint(const void *p1 , const void *p2) ;
+int compString(const void *p1 , const void *p2) ;
+
 
 /*
  * Read a file of integers.
@@ -95,7 +102,7 @@ int * readInteger(char * filename, int * numInteger)
     }
 
   fclose(fptr);
-  free(arr);
+
 
   return arr ;
 
@@ -205,13 +212,7 @@ char * * readString(char * filename, int * numString)
 
   fclose(fptr);
 
-  int i ;
 
-  for(i = 0 ; i < numofLine ; i++)
-    {
-      free(strArr[ind]);
-    }
-  free(strArr);
 
   return strArr ;
 
@@ -225,7 +226,7 @@ char * * readString(char * filename, int * numString)
  */
 void printInteger(int * arrInteger, int numInteger)
 {
-  int i = 0 ;
+  int i ;
 
   for(i = 0 ; i < numInteger ; i++)
     {
@@ -242,11 +243,17 @@ void printInteger(int * arrInteger, int numInteger)
  */
 void printString(char * * arrString, int numString)
 {
-  int i = 0 ;
+  int i ;
+  int len = 0 ;
 
   for(i = 0 ; i < numString ; i ++)
     {
-      printf("%s \n", arrString[i]) ;
+      printf("%s", arrString[i]) ;
+      len = strlen(arrString[i]);
+      if(len == 0 || arrString[i][len-1] != '\n')
+	{
+          printf("\n") ;
+	}
     }
 
 }
@@ -257,6 +264,7 @@ void printString(char * * arrString, int numString)
  */
 void freeInteger(int * arrInteger, int numInteger)
 {
+  free(arrInteger);
 }
 
 /* ----------------------------------------------- */
@@ -267,6 +275,13 @@ void freeInteger(int * arrInteger, int numInteger)
  */
 void freeString(char * * arrString, int numString)
 {
+  int i ;
+  for(i = 0 ; i < numString ; i++)
+    {
+      free(arrString[i]) ;
+    }
+
+  free(arrString);
 }
 
 /* ----------------------------------------------- */
@@ -342,11 +357,18 @@ int saveString(char * filename, char * * arrString, int numString)
       return 0 ;
     }
 
-  int i = 0 ;
+  int i  ;
+  int len ;
 
   for(i = 0 ; i < numString ; i++)
     {
-      fprintf(fptr, "%s \n", arrString[i]) ;
+      fprintf(fptr, "%s", arrString[i]) ;
+
+      len = strlen(arrString[i]);
+      if(len == 0 || arrString[i][len-1] != '\n')
+	{
+	  fprintf(fptr,"\n") ;
+	}
     }
 
   fclose(fptr);
@@ -364,7 +386,33 @@ int saveString(char * filename, char * * arrString, int numString)
 
 void sortInteger(int * arrInteger, int numInteger)
 {
+
+  qsort(arrInteger,numInteger,sizeof(int),compint);
 }
+
+int compint(const void *p1 , const void *p2)
+{
+  int * intp1 = (int*) p1 ;
+
+  int * intp2 = (int*) p2 ;
+
+  int v1 = * intp1 ;
+
+  int v2 = *intp2 ;
+
+  if(v1 < v2)
+    {
+      return -1 ;
+    }
+
+  if(v1 == v2)
+    {
+      return 0 ;
+    }
+
+  return 1 ;
+}
+
 
 
 /* ----------------------------------------------- */
@@ -380,6 +428,11 @@ void sortInteger(int * arrInteger, int numInteger)
 
 void sortString(char * * arrString, int numString)
 {
+      qsort(arrString,numString,sizeof(char *),compString) ;
 }
 
+int compString(const void *p1 , const void *p2)
+{
+return strcmp(* (char * const *) p1, * (char * const *) p2);
+}
 
