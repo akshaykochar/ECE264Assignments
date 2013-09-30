@@ -243,7 +243,7 @@ void printInteger(int * arrInteger, int numInteger)
  */
 void printString(char * * arrString, int numString)
 {
-  int i ;
+  int i = 0 ;
   int len = 0 ;
 
   for(i = 0 ; i < numString ; i ++)
@@ -275,7 +275,7 @@ void freeInteger(int * arrInteger, int numInteger)
  */
 void freeString(char * * arrString, int numString)
 {
-  int i ;
+  int i = 0 ;
   for(i = 0 ; i < numString ; i++)
     {
       free(arrString[i]) ;
