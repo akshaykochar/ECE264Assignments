@@ -1,0 +1,78 @@
+commit 9a1aa7970187a1f476777845e6abf70ac6fc1abe
+Author: Akshay Kochar <akochar@ecelinux26.ecn.purdue.edu>
+Date:   Mon Sep 30 14:05:30 2013 -0400
+
+    Edit final: All test cases working and no memory error.
+
+commit 075a8822997e0cb0abf87ca67713ff5f448219bb
+Author: Akshay Kochar <akochar@ecelinux17.ecn.purdue.edu>
+Date:   Fri Sep 27 14:29:57 2013 -0400
+
+    EDIT 2 all test cases working
+
+commit bdb0595c1a4b4cce9126b2409a519ee7aa513209
+Author: Akshay Kochar <akochar@ecelinux28.ecn.purdue.edu>
+Date:   Fri Sep 27 12:35:08 2013 -0400
+
+    Edit 1 written readInteger , readString, printInteger, printString, writeInteger, writeString
+    no memory leak and no compilation error detected.
+
+commit 1adcbc417003993545f37c503c30c4a07f961638
+Author: Akshay Kochar <akochar@ecelinux21.ecn.purdue.edu>
+Date:   Mon Sep 23 11:36:43 2013 -0400
+
+    Edit 7 completed program, all valgrind errors checked, yet the unknown space error occurs. Professor said it was ok and I will get marks.
+
+commit 59d329acbb4b0472a7ecb4cac50f7e8770d08df4
+Author: Akshay Kochar <akochar@ecelinux13.ecn.purdue.edu>
+Date:   Mon Sep 23 10:15:02 2013 -0400
+
+    Edit 6 tests not working... showing unknown error
+
+commit 4940b38461aee8ca45f9f50f013959ee493cc5d4
+Author: Akshay Kochar <akochar@ecelinux28.ecn.purdue.edu>
+Date:   Sun Sep 22 18:49:32 2013 -0400
+
+    Edit 5 completed the program but decreasing function giving opposite output.
+
+commit 0f1ec3d4eb7343bfb3ab93b53fd2a5d96e2de506
+Author: Akshay Kochar <akochar@ecelinux28.ecn.purdue.edu>
+Date:   Sun Sep 22 18:13:49 2013 -0400
+
+    Edit 4 decreasing,odd,even function written... decreasing function printing output in the opposite manner then expected.
+
+commit 9f0819ef1acc5dcab6b775d0b079b0f4fbfc39c0
+Author: Akshay Kochar <akochar@ecelinux28.ecn.purdue.edu>
+Date:   Sun Sep 22 15:15:07 2013 -0400
+
+    Edit 3 increasing function written
+
+commit 7f6b40dc6c141c38576268062209e770ce4033c1
+Author: Akshay Kochar <akochar@ecelinux41.ecn.purdue.edu>
+Date:   Fri Sep 20 23:38:09 2013 -0400
+
+    edit 2 function 1 complete
+
+commit b964b7b1511b3ea175dbb0e7e09b28e37dec4c48
+Author: Akshay Kochar <akochar@ecelinux08.ecn.purdue.edu>
+Date:   Fri Sep 20 11:52:53 2013 -0400
+
+    edit 1 answer04.c
+
+commit a5efb9e5b057cbb05d35ea56fe5bd191546557ee
+Author: Akshay P Kochar <akochar@ecegrid-lnx.ecn.purdue.edu>
+Date:   Thu Sep 12 16:40:26 2013 -0400
+
+    Edit number 0
+
+commit 10e77c23e11f17dbc5cd3d4b1de11e04bdfb833c
+Author: Akshay P Kochar <akochar@ecelinux17.ecn.purdue.edu>
+Date:   Thu Sep 12 14:42:02 2013 -0400
+
+    PA02:
+
+commit d885c2d7cb0d6e2ec507137d49e6d70262b9af4a
+Author: akshaykochar <akochar@purdue.edu>
+Date:   Thu Sep 12 11:24:25 2013 -0700
+
+    Initial commit

@@ -1,0 +1,86 @@
+GCC = gcc
+CFLAGS = -g -Wall -Wshadow
+LIBS = -lm
+SOURCES = answer07.c pa07.c
+TARGET = answer07
+TESTN := $(shell seq 1 10)
+
+
+TESTS := $(addprefix test,${TESTN})
+
+.PHONY : all build clean environment help testall $(TESTS)
+.DEFAULT_GOAL := build
+
+OBJF = obj
+OBJS = $(patsubst %.c,$(OBJF)/%.o,$(SOURCES))
+
+-include $(SOURCES:%=$(OBJF)/%.P)
+
+all: | build testall
+
+testall: | $(TESTS)
+
+build: $(TARGET)
+
+
+testall: test1 test2 test3 test4 test5 test6 test7 test8 test9 test10
+
+test1: $(TARGET)
+	./$(TARGET) inputs/input0_A inputs/input0_B > outputs/output1
+	diff outputs/output1 expected/expected0
+	valgrind --leak-check=full --verbose  ./$(TARGET) inputs/input0_A inputs/input0_B > outputs/output1
+test2: $(TARGET)
+	./$(TARGET) inputs/input1_A inputs/input1_B > outputs/output2
+	diff outputs/output2 expected/expected1
+	valgrind --leak-check=full --verbose  ./$(TARGET) inputs/input1_A inputs/input1_B > outputs/output2
+test3: $(TARGET)
+	./$(TARGET) inputs/input2_A inputs/input2_B > outputs/output3
+	diff outputs/output3 expected/expected2
+	valgrind --leak-check=full --verbose  ./$(TARGET) inputs/input2_A inputs/input2_B > outputs/output3
+test4: $(TARGET)
+	./$(TARGET) inputs/input3_A inputs/input3_B > outputs/output4
+	diff outputs/output4 expected/expected3
+	valgrind --leak-check=full --verbose  ./$(TARGET) inputs/input3_A inputs/input3_B > outputs/output4
+test5: $(TARGET)
+	./$(TARGET) inputs/input4_A inputs/input4_B > outputs/output5
+	diff outputs/output5 expected/expected4
+	valgrind --leak-check=full --verbose  ./$(TARGET) inputs/input4_A inputs/input4_B > outputs/output5
+test6: $(TARGET)
+	./$(TARGET) inputs/input5_A inputs/input5_B > outputs/output6
+	diff outputs/output6 expected/expected5
+	valgrind --leak-check=full --verbose  ./$(TARGET) inputs/input5_A inputs/input5_B > outputs/output6
+test7: $(TARGET)
+	./$(TARGET) inputs/input6_A inputs/input6_B > outputs/output7
+	diff outputs/output7 expected/expected6
+	valgrind --leak-check=full --verbose  ./$(TARGET) inputs/input6_A inputs/input6_B > outputs/output7
+test8: $(TARGET)
+	./$(TARGET) inputs/input7_A inputs/input7_B > outputs/output8
+	diff outputs/output8 expected/expected7
+	valgrind --leak-check=full --verbose  ./$(TARGET) inputs/input7_A inputs/input7_B > outputs/output8
+test9: $(TARGET)
+	./$(TARGET) inputs/input8_A inputs/input8_B > outputs/output9
+	diff outputs/output9 expected/expected8
+	valgrind --leak-check=full --verbose  ./$(TARGET) inputs/input8_A inputs/input8_B > outputs/output9
+test10: $(TARGET)
+	./$(TARGET) inputs/input9_A inputs/input9_B > outputs/output10
+	diff outputs/output10 expected/expected9
+	valgrind --leak-check=full --verbose  ./$(TARGET) inputs/input9_A inputs/input9_B > outputs/output10
+
+
+
+
+$(TARGET) : answer07.o pa07.o
+	$(GCC) $(CFLAGS) answer07.o pa07.o -o $(TARGET)
+
+pa07.o: pa07.c pa07.h
+	$(GCC) $(CFLAGS) -c -o pa07.o pa07.c # create main.o
+
+answer07.o: answer07.c pa07.h
+	$(GCC) $(CFLAGS) -c -o answer07.o answer07.c # create main.o
+
+#main.o: pa07.c pa07.h
+#	$(GCC) $(CFLAGS) -c main.c # create 1003.o
+
+clean:
+	@cd $(CURDIR)
+	rm -rf $(TARGET) *.o outputs

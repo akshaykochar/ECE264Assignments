@@ -189,26 +189,20 @@ struct Image * loadImage(const char* filename)
 
   if(x != 1)
     {
-      free(head);
       return NULL ;
     }
   if(head->magic_bits != ECE264_IMAGE_MAGIC_BITS)
     {
-      // printf("The magic bits does not match; Error\n");
-      free(head);
       return NULL ;
     } 
 
-  if(head->width <= 0 )
+  if(head->width < 0 )
     {
-      // printf("the width is insane. Error\n\n");
-      free(head);
       return NULL ;
     }
 
-  if(head->height <= 0 )
+  if(head->height < 0 )
     {
-      free(head);
       return NULL ;
     } 
 
@@ -219,14 +213,12 @@ struct Image * loadImage(const char* filename)
 
   if(image1->comment == NULL)
     {
-      free(head);
       return NULL ;
     }
   int y = fread(image1->comment,sizeof(char),head->comment_len,fptr) ;
 
-  if(y == 0)
+  if(y != head->comment_len)
     {
-      free(head);
       return NULL ;
     }
 
@@ -236,14 +228,12 @@ struct Image * loadImage(const char* filename)
 
   if(image1->data == NULL)
     {
-      free(head);
       return NULL ;
     }
   int z = fread(image1->data,sizeof(uint8_t),(head->width*head->height),fptr) ;
 
-  if(z == 0)
+  if(z != (head->width*head->height))
     {
-      free(head);
       return NULL ;
     }
 
@@ -253,7 +243,6 @@ struct Image * loadImage(const char* filename)
 
   if(a != 0)
     {
-      free(head);
       return NULL ;
     }
 
