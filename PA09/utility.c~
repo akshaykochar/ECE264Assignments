@@ -1,0 +1,21 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include "pa09.h"
+//#include "tree.h"
+
+
+// Build Hoff-man tree using stack
+
+HoffNode HoffNode_build(HoffNode * tree , char * array, int length)
+{
+  List stack = NULL ;
+  for(i = 0 ; i < lenght , i++)
+    {
+      if(array[i] == '1' )
+	{
+	  stack = malloc(sizeof(List)) ;
+	  stack->value = array[i+1] ;
+	}
+      if(array[i] == '0')
+	{
+	  {
